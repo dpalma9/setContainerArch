@@ -5,4 +5,6 @@ virtualenv .venv
 source .venv/bin/activate
 pip install ansible
 ansible-playbook --ask-become-pass ansible/main.yml
+sudo minikube start  --vm-driver=none
+sudo chown -R $USER:$USER .minikube
 ```
