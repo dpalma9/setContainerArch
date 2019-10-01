@@ -1,0 +1,17 @@
+---
+ - name: Get latest kubectl binary
+   command: curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+   args:
+     chdir: "{{ install_dir }}"
+
+ - name: Get latest minikube binary
+   get_url: url="{{ item.url }}" dest="{{ item.dest }}"
+   with_items:
+     - url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+       dest: "{{ install_dir }}/minikube"
+
+ - name: chmod binaries
+   file: dest="{{ install_dir }}/{{ item }}" mode=0755
+   with_items:
+     - minikube
+     - kubectl

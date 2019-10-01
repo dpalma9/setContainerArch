@@ -47,3 +47,5 @@
         groups: docker
         append: yes
 
+  roles:
+    - minikube
